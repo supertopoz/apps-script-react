@@ -1,0 +1,30 @@
+  <script type="text/babel">
+  
+  const initialState = {
+    result: 1, 
+    lastValues: []
+  }
+  
+  
+  const reducer = (state = initialState, action) => {
+    switch (action.type){
+      case "ADD": 
+          state = {
+            ...state,
+            result : state.result + action.payload,
+            lastValues: [...state.lastValues, action.payload]
+          }          
+        break;
+    }
+    return state;
+  };  
+  const store = Redux.createStore(reducer);
+  
+  store.subscribe( () => {
+    console.log('Store updated!', store.getState());
+  })
+  
+  store.dispatch({ type: "ADD", payload: 10 })
+  </script>
+
+
